@@ -1,0 +1,44 @@
+body {
+    text-align: center;
+    background-color: #eee;
+}
+
+img {
+    width: 150px;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+p{
+    margin: 1em;
+}
+
+label, input[type=text] {
+    display: inline-block;
+    clear: both;
+}
+
+label {
+    padding: 0.4em;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+input[type=text]{
+    font-size: 200%;
+    margin: 0.4em;
+    padding: .2em;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    margin: 2em;
+    padding: 10px;
+    font-size: 100%;
+    font-weight: bold;
+    border-radius: 5px;
+}

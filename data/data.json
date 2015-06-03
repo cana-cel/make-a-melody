@@ -1,0 +1,50 @@
+[
+    {
+        "first": ["H", "Y", "X"],
+        "chords": "C" 
+    },
+    {
+        "first": ["I", "C"],
+        "chords": "Db"
+    },
+    {
+        "first": ["D", "U"],
+        "chords": "D"
+    },
+    {
+        "first": ["K", "W"],
+        "chords": "Eb"
+    },
+    {
+        "first": ["E", "J"],
+        "chords": "E"
+    },
+    {
+        "first": ["F", "T"],
+        "chords": "F"
+    },
+    {
+        "first": ["M", "L"],
+        "chords": "Gb"
+    },
+    {
+        "first": ["G", "S"],
+        "chords": "G"
+    },
+    {
+        "first": ["N", "P"],
+        "chords": "Ab"
+    },
+    {
+        "first": ["A", "Q"],
+        "chords": "A"
+    },
+    {
+        "first": ["O", "V"],
+        "chords": "Bb"
+    },
+    {
+        "first": ["B", "R", "Z"],
+        "chords": "B"
+    }
+]
