@@ -40,5 +40,26 @@ button {
     padding: 10px;
     font-size: 100%;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 4px;
+    box-shadow: 0 2px 0 #696999;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    line-height: 20px;
+  	-webkit-transition: all .2s;
+    color: #fff;
+    background-color: #708090;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+button:hover {
+  background-color: #b0c4de;
+  box-shadow: 0 2px 0 #595999;
+　cursor: pointer;
+}
+
+button:active {
+	top: 3px;
+	box-shadow: none;
 }
