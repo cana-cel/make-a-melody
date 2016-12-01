@@ -1,50 +1,50 @@
 [
     {
         "first": ["H", "Y", "X"],
-        "chords": "C" 
+        "chord": "C"
     },
     {
         "first": ["I", "C"],
-        "chords": "Db"
+        "chord": "Db"
     },
     {
         "first": ["D", "U"],
-        "chords": "D"
+        "chord": "D"
     },
     {
         "first": ["K", "W"],
-        "chords": "Eb"
+        "chord": "Eb"
     },
     {
         "first": ["E", "J"],
-        "chords": "E"
+        "chord": "E"
     },
     {
         "first": ["F", "T"],
-        "chords": "F"
+        "chord": "F"
     },
     {
         "first": ["M", "L"],
-        "chords": "Gb"
+        "chord": "Gb"
     },
     {
         "first": ["G", "S"],
-        "chords": "G"
+        "chord": "G"
     },
     {
         "first": ["N", "P"],
-        "chords": "Ab"
+        "chord": "Ab"
     },
     {
         "first": ["A", "Q"],
-        "chords": "A"
+        "chord": "A"
     },
     {
         "first": ["O", "V"],
-        "chords": "Bb"
+        "chord": "Bb"
     },
     {
         "first": ["B", "R", "Z"],
-        "chords": "B"
+        "chord": "B"
     }
 ]

@@ -12,62 +12,58 @@ function changelastname () {
 }
 
 $("#inputbutton").on("click", clickbutton);
-function clickbutton() {
-  firstname_1 = firstname.value.charAt(0);
-  lastname_1 = lastname.value.charAt(0);
 
-  $.ajax({
-    url: "data/data.json",
-    dataType: "json",
-    success: function (data) {
-      for (var i=0; i<data.length; i++) {
-        var first = data[i].first;
-        var chords = data[i].chords;
-        for (var j=0; j<first.length; j++){
-          if (firstname_1 === first[j]){
-            var key = chords;
-            //console.log(key);
-          }
-        }
-        if (!key) {
-          key = "None";
+function clickbutton() {
+  var initialFirstname = firstname.value.charAt(0);
+  var initialLastname = lastname.value.charAt(0);
+  var chordFlag = 0;
+  var scaleFlag = 0;
+  var key = '';
+  var scale = '';
+
+  $.getJSON("data/chord.json", function(json){
+    for (var i=0; i<json.length; i++) {
+      var first = json[i].first;
+      var chord = json[i].chord;
+      for (var j=0; j<first.length; j++){
+        if (initialFirstname === first[j]){
+          key = chord;
+          //console.log(key);
         }
       }
-      $.ajax({
-        url: "data/data2.json",
-        dataType: "json",
-        success: function (data) {
-          for (i=0; i<data.length; i++){
-            var major = data[i].major;
-            var minor = data[i].minor;
-            for (var j=0; j<major.length; j++){
-              if (lastname_1 === major[j]){
-                var scale = "major";
-                //console.log(scale);
-              }
-              else if (lastname_1 === minor[j]) {
-                var scale = "minor";
-                console.log(scale);
-              }
-            }
-            if (!scale) {
-              scale = "None";
-            }
-          }
-          sound(key, scale);
-          if (key === "None" || scale === "None"){
-            alert("正しく入力してください！");
-          }
-        },
-        error: function (data) {
-          console.log(data);
-        }
-      })
-    },
-    error: function (data) {
-      console.log(data);
+      if (!key) {
+        key = "None";
+      }
     }
-  })
+    chordFlag = 1;
+  });
+
+  $.getJSON("data/scale.json", function(json){
+    for (i=0; i<json.length; i++){
+      var major = json[i].major;
+      var minor = json[i].minor;
+      for (var j=0; j<major.length; j++){
+        if (initialLastname === major[j]){
+          scale = "major";
+          console.log(scale);
+        }
+        else if (initialLastname === minor[j]) {
+          scale = "minor";
+          console.log(scale);
+        }
+      }
+      if (!scale) {
+        scale = "None";
+      }
+    }
+    scaleFlag = 1;
+    if (scaleFlag && chordFlag == 1) {
+      sound(key, scale);
+      if (key === "None" || scale === "None"){
+        alert("正しく入力してください！");
+      }
+    }
+  });
 }
 
 function sound(key, scale) {
