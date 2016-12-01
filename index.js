@@ -2,13 +2,11 @@
 $("#firstname").on("change", changefirstname);
 function changefirstname () {
   var firstname = this.value;
-  //console.log(firstname);
 }
 
 $("#lastname").on("change", changelastname);
 function changelastname () {
   var lastname = this.value;
-  //console.log(lastname);
 }
 
 $("#inputbutton").on("click", clickbutton);
@@ -18,8 +16,16 @@ function clickbutton() {
   var initialLastname = lastname.value.charAt(0);
   var chordFlag = 0;
   var scaleFlag = 0;
+  var patternFlag = 0;
   var key = '';
   var scale = '';
+  var pattern = '';
+
+  $.getJSON("data/tone.json", function(json){
+    pattern = json[0].pattern;
+    console.log(pattern);
+    patternFlag = 1;
+  });
 
   $.getJSON("data/chord.json", function(json){
     for (var i=0; i<json.length; i++) {
@@ -28,7 +34,6 @@ function clickbutton() {
       for (var j=0; j<first.length; j++){
         if (initialFirstname === first[j]){
           key = chord;
-          //console.log(key);
         }
       }
       if (!key) {
@@ -45,11 +50,9 @@ function clickbutton() {
       for (var j=0; j<major.length; j++){
         if (initialLastname === major[j]){
           scale = "major";
-          console.log(scale);
         }
         else if (initialLastname === minor[j]) {
           scale = "minor";
-          console.log(scale);
         }
       }
       if (!scale) {
@@ -58,18 +61,21 @@ function clickbutton() {
     }
     scaleFlag = 1;
     if (scaleFlag && chordFlag == 1) {
-      sound(key, scale);
-      if (key === "None" || scale === "None"){
-        alert("正しく入力してください！");
+      if (patternFlag == 1) {
+        sound(key, scale, pattern);
+        if (key === "None" || scale === "None"){
+          alert("正しく入力してください！");
+        }
       }
     }
   });
 }
 
-function sound(key, scale) {
+function sound(key, scale, pattern) {
   //各ノードを生成するためのオブジェクト
   console.log(key);
   console.log(scale);
+  console.log(pattern);
 
   window.AudioContext = window.AudioContext||window.webkitAudioContext;
   var audioContext = new AudioContext;
@@ -80,7 +86,9 @@ function sound(key, scale) {
   });
 
   var play = function (noteId) {
+    console.log(note);
     console.log(note[noteId]);
+    var tone;
 
     //音の発生源
     var osciilatorNode = audioContext.createOscillator();
@@ -94,22 +102,22 @@ function sound(key, scale) {
     //note[noteID]で、C4+何音みたいにする
 
     switch (key){
-      case 'C': note[noteId] = note[noteId] + 0; break;
-      case 'Db': note[noteId] = note[noteId] + 1; break;
-      case 'D': note[noteId] = note[noteId] + 2; break;
-      case 'Eb': note[noteId] = note[noteId] + 3; break;
-      case 'E': note[noteId] = note[noteId] + 4; break;
-      case 'F': note[noteId] = note[noteId] + 5; break;
-      case 'Gb': note[noteId] = note[noteId] + 6; break;
-      case 'G': note[noteId] = note[noteId] + 7; break;
+      case 'C': tone = note[noteId] + 0; break;
+      case 'Db': tone = note[noteId] + 1; break;
+      case 'D': tone = note[noteId] + 2; break;
+      case 'Eb': tone = note[noteId] + 3; break;
+      case 'E': tone = note[noteId] + 4; break;
+      case 'F': tone = note[noteId] + 5; break;
+      case 'Gb': tone = note[noteId] + 6; break;
+      case 'G': tone = note[noteId] + 7; break;
       case 'Ab': note[noteId] = note[noteId] + 8; break;
-      case 'A': note[noteId] = note[noteId] + 9; break;
-      case 'Bb': note[noteId] = note[noteId] + 10; break;
-      case 'B': note[noteId] = note[noteId] + 11; break;
+      case 'A': tone = note[noteId] + 9; break;
+      case 'Bb': tone = note[noteId] + 10; break;
+      case 'B': tone = note[noteId] + 11; break;
       case 'None': break;
     }
 
-    var frequency = parseInt(440 * Math.pow(Math.pow(2,1/12), (3-12) + note[noteId]), 10);
+    var frequency = parseInt(440 * Math.pow(Math.pow(2,1/12), (3-12) + tone), 10);
     osciilatorNode.frequency.value = frequency;
 
     //音量を少しずつ下げる
@@ -133,12 +141,12 @@ function sound(key, scale) {
   }
 
   play.count = 0;
-
+  console.log(pattern[0]);
   if (scale === 'major' & key != 'None') {
     play('C4')('D4')('E4')('G4')('C5')('D5')('E5')('G5')('C6');
   }
   else if(scale === 'minor' & key != 'None'){
-    play('C4')('D4')('Eb4')('G4')('C5')('D5')('Eb5')('G5')('C6');
+    play('C4')(pattern[0])('Eb4')('G4')('C5')('D5')('Eb5')('G5')('C6');
   }
   else if(scale === 'None'){
   }
