@@ -14,18 +14,13 @@ $("#inputbutton").on("click", clickbutton);
 function clickbutton() {
   var initialFirstname = firstname.value.charAt(0);
   var initialLastname = lastname.value.charAt(0);
+  var nameLength = firstname.value.length + lastname.value.length;
   var chordFlag = 0;
   var scaleFlag = 0;
   var patternFlag = 0;
   var key = '';
   var scale = '';
   var pattern = '';
-
-  $.getJSON("data/tone.json", function(json){
-    pattern = json[0].pattern;
-    console.log(pattern);
-    patternFlag = 1;
-  });
 
   $.getJSON("data/chord.json", function(json){
     for (var i=0; i<json.length; i++) {
@@ -44,7 +39,7 @@ function clickbutton() {
   });
 
   $.getJSON("data/scale.json", function(json){
-    for (i=0; i<json.length; i++){
+    for (i=0; i<json.length; i++) {
       var major = json[i].major;
       var minor = json[i].minor;
       for (var j=0; j<major.length; j++){
@@ -59,12 +54,37 @@ function clickbutton() {
         scale = "None";
       }
     }
+
     scaleFlag = 1;
+  });
+
+  $.getJSON("data/tone.json", function(json){
+
+    for (var a=0; a<json.length; a++) {
+      var textLength = json[a].text_length;
+      for (var b=0; b<textLength.length; b++) {
+        if (nameLength === textLength[b]) {
+          if (scale == "major") {
+            pattern = json[a].pattern_major;
+          }
+          else if (scale == "minor") {
+            pattern = json[a].pattern_minor;
+          }
+          else {
+            pattern = "None";
+          }
+        }
+      }
+    }
+
+    patternFlag = 1;
     if (scaleFlag && chordFlag == 1) {
       if (patternFlag == 1) {
-        sound(key, scale, pattern);
         if (key === "None" || scale === "None"){
           alert("正しく入力してください！");
+        }
+        else {
+          sound(key, scale, pattern);
         }
       }
     }
@@ -73,21 +93,15 @@ function clickbutton() {
 
 function sound(key, scale, pattern) {
   //各ノードを生成するためのオブジェクト
-  console.log(key);
-  console.log(scale);
-  console.log(pattern);
-
   window.AudioContext = window.AudioContext||window.webkitAudioContext;
   var audioContext = new AudioContext;
 
   var note = {};
-  ['C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5', 'C6', 'Db6', 'D6'].forEach(function (v, i) {
+  ['C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5', 'C6', 'Db6', 'D6', 'Eb6', 'E6'].forEach(function (v, i) {
     note[v] = i;
   });
 
   var play = function (noteId) {
-    console.log(note);
-    console.log(note[noteId]);
     var tone;
 
     //音の発生源
@@ -110,7 +124,7 @@ function sound(key, scale, pattern) {
       case 'F': tone = note[noteId] + 5; break;
       case 'Gb': tone = note[noteId] + 6; break;
       case 'G': tone = note[noteId] + 7; break;
-      case 'Ab': note[noteId] = note[noteId] + 8; break;
+      case 'Ab': tone = note[noteId] + 8; break;
       case 'A': tone = note[noteId] + 9; break;
       case 'Bb': tone = note[noteId] + 10; break;
       case 'B': tone = note[noteId] + 11; break;
@@ -141,14 +155,11 @@ function sound(key, scale, pattern) {
   }
 
   play.count = 0;
-  console.log(pattern[0]);
-  if (scale === 'major' & key != 'None') {
-    play('C4')('D4')('E4')('G4')('C5')('D5')('E5')('G5')('C6');
+
+  if (scale == 'None' & key == 'None') {
   }
-  else if(scale === 'minor' & key != 'None'){
-    play('C4')(pattern[0])('Eb4')('G4')('C5')('D5')('Eb5')('G5')('C6');
-  }
-  else if(scale === 'None'){
+  else {
+    play(pattern[0])(pattern[1])(pattern[2])(pattern[3])(pattern[4])(pattern[5])(pattern[6])(pattern[7])(pattern[8]);
   }
 
 }

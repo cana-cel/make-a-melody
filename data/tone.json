@@ -1,6 +1,77 @@
 [
     {
-        "length": 2,
-        "pattern": ["C4", "G4", "C5"]
+        "text_length": [1, 16],
+        "pattern_major": ["C4", "D4", "E4", "G4", "C5", "D5", "E5", "G5", "C6"],
+        "pattern_minor": ["C4", "D4", "Eb4", "G4", "C5", "D5", "Eb5", "G5", "C6"]
+    },
+    {
+        "text_length": [2, 17],
+        "pattern_major": ["C4", "E4", "D4", "G4", "C5", "E5", "D5", "G5", "C6"],
+        "pattern_minor": ["C4", "Eb4", "D4", "G4", "C5", "Eb5", "D5", "G5", "C6"]
+    },
+    {
+        "text_length": [3, 18],
+        "pattern_major": ["C4", "D4", "E4", "G4", "C5", "E5", "D5", "G5", "C6"],
+        "pattern_minor": ["C4", "D4", "Eb4", "G4", "C5", "Eb5", "D5", "G5", "C6"]
+    },
+    {
+        "text_length": [4, 19],
+        "pattern_major": ["C4", "E4", "G4", "B4", "C5", "E5", "G5", "B5", "C6"],
+        "pattern_minor": ["C4", "Eb4", "G4", "Bb4", "C5", "Eb5", "G5", "Bb5", "C6"]
+    },
+    {
+        "text_length": [5, 20],
+        "pattern_major": ["C4", "G4", "E4", "B4", "C5", "G5", "E6", "D6", "C6"],
+        "pattern_minor": ["C4", "G4", "Eb4", "Bb4", "C5", "G5", "Eb6", "D6", "C6"]
+    },
+    {
+        "text_length": [6, 21],
+        "pattern_major": ["C4", "D4", "E4", "G4", "C5", "G5", "D5", "E5", "C6"],
+        "pattern_minor": ["C4", "D4", "Eb4", "G4", "C5", "G5", "D5", "Eb5", "C6"]
+    },
+    {
+        "text_length": [7, 22],
+        "pattern_major": ["C4", "E4", "F4", "G4", "C5", "E5", "F5", "G5", "C6"],
+        "pattern_minor": ["C4", "Eb4", "F4", "G4", "C5", "Eb5", "F5", "G5", "C6"]
+    },
+    {
+        "text_length": [8, 23],
+        "pattern_major": ["C4", "E4", "G4", "B4", "C5", "G5", "E5", "B5", "C6"],
+        "pattern_minor": ["C4", "Eb4", "G4", "Bb4", "C5", "G5", "Eb5", "Bb5", "C6"]
+    },
+    {
+        "text_length": [9, 24],
+        "pattern_major": ["C4", "F4", "E4", "G4", "C5", "F5", "E5", "G5", "C6"],
+        "pattern_minor": ["C4", "F4", "Eb4", "G4", "C5", "F5", "Eb5", "G5", "C6"]
+    },
+    {
+        "text_length": [10, 25],
+        "pattern_major": ["C4", "D4", "E4", "G4", "C5", "E5", "G5", "D6", "C6"],
+        "pattern_minor": ["C4", "D4", "Eb4", "G4", "C5", "Eb5", "G5", "D6", "C6"]
+    },
+    {
+        "text_length": [11, 26],
+        "pattern_major": ["C4", "E4", "B4", "G4", "C5", "E5", "B5", "G5", "C6"],
+        "pattern_minor": ["C4", "Eb4", "Bb4", "G4", "C5", "Eb5", "Bb5", "G5", "C6"]
+    },
+    {
+        "text_length": [12, 27],
+        "pattern_major": ["C4", "D4", "E4", "G4", "C5", "G5", "E6", "D6", "C6"],
+        "pattern_minor": ["C4", "D4", "Eb4", "G4", "C5", "G5", "Eb6", "D6", "C6"]
+    },
+    {
+        "text_length": [13, 28],
+        "pattern_major": ["C4", "E4", "G4", "F4", "C5", "E5", "G5", "F5", "C6"],
+        "pattern_minor": ["C4", "Eb4", "G4", "F4", "C5", "Eb5", "G5", "F5", "C6"]
+    },
+    {
+        "text_length": [14, 29],
+        "pattern_major": ["C4", "D4", "G4", "E4", "C5", "D5", "G5", "E5", "C6"],
+        "pattern_minor": ["C4", "D4", "G4", "Eb4", "C5", "D5", "G5", "Eb5", "C6"]
+    },
+    {
+        "text_length": [15, 30],
+        "pattern_major": ["C4", "D4", "E4", "G4", "C5", "E5", "F5", "G5", "C6"],
+        "pattern_minor": ["C4", "D4", "Eb4", "G4", "C5", "Eb5", "F5", "G5", "C6"]
     }
 ]
