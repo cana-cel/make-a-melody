@@ -21,6 +21,7 @@ function clickbutton() {
   var key = '';
   var scale = '';
   var pattern = '';
+  var tempo = '';
 
   $.getJSON("data/chord.json", function(json){
     for (var i=0; i<json.length; i++) {
@@ -77,21 +78,30 @@ function clickbutton() {
       }
     }
 
+    if (pattern != "None") {
+      if (lastname.value.length % 2 == 0) {
+        pattern.reverse();
+      }
+    }
+
     patternFlag = 1;
+
+    tempo = (firstname.value.length * 0.009) + 0.15;
+
     if (scaleFlag && chordFlag == 1) {
       if (patternFlag == 1) {
         if (key === "None" || scale === "None"){
           alert("正しく入力してください！");
         }
         else {
-          sound(key, scale, pattern);
+          sound(key, scale, pattern, tempo);
         }
       }
     }
   });
 }
 
-function sound(key, scale, pattern) {
+function sound(key, scale, pattern, tempo) {
   //各ノードを生成するためのオブジェクト
   window.AudioContext = window.AudioContext||window.webkitAudioContext;
   var audioContext = new AudioContext;
@@ -150,7 +160,7 @@ function sound(key, scale, pattern) {
 
     //音を鳴らす
     osciilatorNode.start(play.count || 0);
-    play.count = play.count + .2;
+    play.count = play.count + tempo;
     return play;
   }
 
